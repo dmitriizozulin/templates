@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess';
 
@@ -6,7 +6,9 @@ import sveltePreprocess from 'svelte-preprocess';
 const config = {
 	preprocess: [vitePreprocess(), sveltePreprocess()],
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			runtime: 'nodejs20.x',
+		}),
 		alias: {
 			'@common': 'src/common',
 			'@components': 'src/components',
