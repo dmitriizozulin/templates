@@ -17,8 +17,9 @@ export const filteredTemplates = derived([tempaltesStore, filters], ([$tempaltes
     return $tempaltesStore.filter(template => {
         const typeFilter = $filters.type ? template.type === $filters.type : true;
 
+        const value = $filters?.value?.toLowerCase()!;
         const valueFilter = $filters.value
-            ? template.value.toLowerCase().includes($filters.value.toLowerCase())
+            ? template.value.toLowerCase().includes(value) || template.name.toLowerCase().includes(value)
             : true;
 
         return typeFilter && valueFilter;
