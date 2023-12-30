@@ -43,11 +43,22 @@ export class LocalStorageRepository<E extends Entity, I extends string = E['id']
         this.upload();
     }
 
-    private load(): void {
-        if (this.store.size !== 0) return;
-
+    public getRawData(): string {
         const data = this.storage.getItem(this.repositoryKey);
+        return data || '';
+    }
 
+    public getRawPayload(): string {
+        const payload: Record<string, object> = {};
+
+        [...this.store.values()].forEach((value) => {
+            payload[value.id] = value.toDto();
+        })
+
+        return JSON.stringify(payload);
+    }
+
+    public loadRaw(data: string): void {
         if (!data) return;
 
         const parsed = JSON.parse(data);
@@ -55,17 +66,20 @@ export class LocalStorageRepository<E extends Entity, I extends string = E['id']
         Object.entries(parsed).forEach(([key, value]) => {
             this.store.set(key as I, this.restorer(value as object));
         });
+        
+        this.upload();
+    }
+
+    private load(): void {
+        if (this.store.size !== 0) return;
+
+        const data = this.getRawData();
+
+        this.loadRaw(data)
     }
 
     private upload(): void {
-        const payload: Record<string, object> = {};
-
-        [...this.store.values()].forEach((value) => {
-            payload[value.id] = value.toDto();
-        })
-
-        this.storage.setItem(this.repositoryKey, JSON.stringify(payload));
-
+        this.storage.setItem(this.repositoryKey, this.getRawPayload());
         this.notify();
     }
 }

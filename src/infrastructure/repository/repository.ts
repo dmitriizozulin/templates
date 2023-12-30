@@ -27,6 +27,10 @@ export abstract class Repository<E extends Entity, I extends string = E['id']> i
     public abstract save(entity: E): Promise<void>;
     public abstract delete(entityId: I): Promise<void>;
 
+    public abstract getRawData(): string;
+    public abstract getRawPayload(): string;
+    public abstract loadRaw(data: string): void;
+
     public subscribe(listener: Listener): Unsubscribe {
         const key = Symbol();
 
