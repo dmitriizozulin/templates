@@ -16,10 +16,6 @@
     const groupedByType = derived(orderedByCreation, ($orderedByCreation) =>
         groupBy($orderedByCreation, "type"),
     );
-
-    $: {
-        console.log($groupedByType);
-    }
 </script>
 
 <div class="root">
@@ -51,5 +47,8 @@
 
     .type {
         font-weight: 500;
+        word-wrap: break-word;
+        color: #fff;
+        max-width: 500px;
     }
 </style>

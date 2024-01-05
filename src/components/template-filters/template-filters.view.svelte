@@ -26,8 +26,8 @@
     <div class="filters">
         <input type="text" placeholder="Текст" bind:value />
 
-        <select name="type" bind:value={type}>
-            <option value="">Категория</option>
+        <select class="type_style" name="type" bind:value={type}>
+            <option  value="">Категория</option>
             {#each $typeOptions as type (type)}
                 <option value={type}>{type}</option>
             {/each}
@@ -37,15 +37,16 @@
 
 <style>
     .root {
+        max-width: 500px;
         display: flex;
         flex-direction: column;
         row-gap: 12px;
-
         border-radius: 8px;
-        background-color: #d4d4d4;
-        color: #222;
+        border: 2px solid #fff;
+        background: rgb(35,12,52);
+        background: linear-gradient(90deg, rgba(35,12,52,1) 0%, rgba(176,142,201,1) 50%, rgba(35,12,52,1) 100%);
+        color: #fff;
 
-        max-width: 500px;
 
         padding: 12px;
         margin-top: 4px;
@@ -56,5 +57,8 @@
         display: grid;
         grid-template-columns: 3fr 1fr;
         column-gap: 8px;
+    }
+    .type_style {
+        max-width: 150px; 
     }
 </style>

@@ -16,7 +16,7 @@
 </script>
 
 <div class="templates">
-    <h2>Часто используемые</h2>
+    <h2 class="templates_style">Часто используемые</h2>
     {#each $topTemplates as template (template.id)}
         <div animate:flip={{ duration: 200 }}>
             <Template {template} on:click={() => use(template.id)} />
@@ -29,5 +29,8 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+    }
+    .templates_style {
+        color: #fff;
     }
 </style>

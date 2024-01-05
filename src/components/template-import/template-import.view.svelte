@@ -41,14 +41,14 @@
     };
 </script>
 
-<div>
-    <button>
-        <label for="file">Загрузить из файла</label>
+<div >
+    <button class="file_style">
+        <label  for="file">Загрузить из файла</label>
     </button>
 
     <input id="file" class="file" type="file" accept=".json, .txt" bind:files />
 
-    <button on:click={saveToFile}>Сохранить в файл</button>
+    <button class="file_style" on:click={saveToFile}>Сохранить в файл</button>
 </div>
 
 <style>
@@ -57,7 +57,12 @@
         position: absolute;
         user-select: none;
     }
-
+    .file_style {
+        border: 2px solid #fff;
+        background: rgb(35,12,52);
+        background: linear-gradient(90deg, rgba(35,12,52,1) 0%, rgba(90,73,102,1) 50%, rgba(35,12,52,1) 100%);
+        color: #fff;
+    }
     label {
         cursor: pointer;
     }

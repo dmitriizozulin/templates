@@ -49,28 +49,21 @@
 
     <textarea class="template_text" placeholder="Текст" bind:value />
 
-    <button disabled={!isValid} on:click={onCreate}>Создать</button>
+    <button class="template_button" disabled={!isValid} on:click={onCreate}>Создать</button>
 </div>
 
 <style>
     .template {
-        display: flex;
-        flex-direction: column;
-        max-width: 500px;
-        row-gap: 12px;
-
-        border-radius: 8px;
-        background: rgb(2, 0, 36);
-        background: linear-gradient(
-            343deg,
-            rgba(2, 0, 36, 1) 0%,
-            rgba(4, 4, 34, 1) 30%,
-            rgba(28, 56, 80, 1) 70%,
-            rgba(63, 134, 148, 1) 100%
-        );
-        color: #222;
-
-        padding: 12px;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            row-gap: 12px;
+            border-radius: 8px;
+            background: rgb(35,12,52);
+        background: linear-gradient(90deg, rgba(35,12,52,1) 0%, rgba(90,73,102,1) 50%, rgba(35,12,52,1) 100%);
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 12px;
     }
 
     input {
@@ -79,6 +72,13 @@
 
     button {
         width: max-content;
+    }
+    .template_button {
+        background: rgb(35,12,52);
+        background: linear-gradient(90deg, rgba(35,12,52,1) 0%, rgba(90,73,102,1) 50%, rgba(35,12,52,1) 100%);
+        color: #fff;
+        border: 2px solid #fff;
+
     }
 
     .info {
