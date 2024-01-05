@@ -1,5 +1,13 @@
 import { getContext } from "svelte";
 
-export const inject = (token: Symbol): any => {
-    return getContext(token) ?? null;
+import type { Token } from "./introduceDependency";
+
+export const inject = <DT>({ token, _type }: Token<DT>): NonNullable<typeof _type> => {
+    const dependency = getContext<DT>(token);
+
+    if (!dependency) {
+        throw new Error(`Implementation for dependency ${String(token)} not provided`);
+    }
+
+    return dependency;
 }

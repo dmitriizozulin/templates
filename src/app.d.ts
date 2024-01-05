@@ -7,3 +7,6 @@ declare namespace App {
 	// interface PageData {}
 	// interface Platform {}
 }
+
+
+type First<T> = T extends [infer U, ...rest: any] ? U : never;

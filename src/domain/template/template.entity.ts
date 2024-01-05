@@ -1,8 +1,9 @@
+import { isEmpty } from 'lodash';
+
 
 import { IEntity } from '@domain/abstract/entity';
 
 import type { ToConstructorParams, ToRestorationParams } from '@utils/entityUtils';
-
 import { createEntity } from "@utils/createEntity";
 import { generateId } from '@utils/generateId';
 import { restoreEntity } from "@utils/restoreEntity";
@@ -77,6 +78,18 @@ class Template extends IEntity implements ITemplate {
         this.#usedCount += 1;
     }
 
+    public updateName(name: string): void {
+        this.#name = name;
+    }
+
+    public updateType(type: string): void {
+        this.#type = type;
+    }
+
+    public updateValue(value: string): void {
+        this.#value = value;
+    }
+
     public toDto(): object {
         return {
             id: this.id,
@@ -86,6 +99,10 @@ class Template extends IEntity implements ITemplate {
             usedCount: this.usedCount,
             createdAt: this.createdAt.toISOString(),
         }
+    }
+
+    public validate(): boolean {
+        return [this.name, this.type, this.value].every((it) => !isEmpty(it));
     }
 }
 

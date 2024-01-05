@@ -7,7 +7,7 @@
     import { inject } from "@hooks/inject";
     import { first } from "lodash";
 
-    const repository: ITemplateRepository = inject(TemplateRepositoryToken);
+    const repository = inject(TemplateRepositoryToken);
 
     let files: FileList;
 
@@ -41,9 +41,9 @@
     };
 </script>
 
-<div >
+<div>
     <button class="file_style">
-        <label  for="file">Загрузить из файла</label>
+        <label for="file">Загрузить из файла</label>
     </button>
 
     <input id="file" class="file" type="file" accept=".json, .txt" bind:files />
@@ -59,8 +59,13 @@
     }
     .file_style {
         border: 2px solid #fff;
-        background: rgb(35,12,52);
-        background: linear-gradient(90deg, rgba(35,12,52,1) 0%, rgba(90,73,102,1) 50%, rgba(35,12,52,1) 100%);
+        background: rgb(35, 12, 52);
+        background: linear-gradient(
+            90deg,
+            rgba(35, 12, 52, 1) 0%,
+            rgba(90, 73, 102, 1) 50%,
+            rgba(35, 12, 52, 1) 100%
+        );
         color: #fff;
     }
     label {

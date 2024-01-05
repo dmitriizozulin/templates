@@ -1,8 +1,7 @@
 import { onMount } from "svelte";
 
 import {
-  TemplateRepositoryToken,
-  type ITemplateRepository,
+  TemplateRepositoryToken
 } from "@domain/template/template.repository";
 
 import { inject } from "@hooks/inject";
@@ -10,9 +9,9 @@ import { inject } from "@hooks/inject";
 import { filters, setTemplates, filteredTemplates } from "./template.store";
 
 export const templateService = () => {
-  const repository: ITemplateRepository = inject(TemplateRepositoryToken);
+  const repository = inject(TemplateRepositoryToken);
 
-  let loaded: boolean = false;
+  let loaded = false;
 
   onMount(() => {
     if (!loaded) {
@@ -37,9 +36,11 @@ export const templateService = () => {
 
     await repository.save(template);
   };
+
   const remove = async (templateId: string) => {
     await repository.delete(templateId);
   };
+
   return {
     templates: filteredTemplates,
     filters,

@@ -1,7 +1,12 @@
 import { setContext } from "svelte";
 
-type Initializator = () => any;
+export interface Token<DT> {
+    _type?: DT;
+    token: symbol;
+}
 
-export const introduceDependency = (token: Symbol, initializator: Initializator) => {
+type Initializator<D> = () => D;
+
+export const introduceDependency = <DT>({ token, _type }: Token<DT>, initializator: Initializator<typeof _type>): void => {
     setContext(token, initializator());
 }
