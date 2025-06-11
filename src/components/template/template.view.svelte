@@ -11,6 +11,7 @@
     const { remove } = templateService();
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
 <div
     class="template"
     style={`scale: ${$size / 100}`}

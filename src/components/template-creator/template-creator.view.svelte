@@ -20,14 +20,14 @@
 
     $: isValid = template.validate();
 
+    const updaterFrom: Record<UpdaterType, (value: string) => void> = {
+        name: (name) => template.updateName(name),
+        type: (type) => template.updateType(type),
+        value: (value) => template.updateValue(value),
+    };
+
     const getHandler = (updaterType: UpdaterType) => (event: Event) => {
         const input = event.target as HTMLInputElement;
-
-        const updaterFrom: Record<UpdaterType, (value: string) => void> = {
-            name: (name) => template.updateName(name),
-            type: (type) => template.updateType(type),
-            value: (value) => template.updateValue(value),
-        };
 
         const updater = updaterFrom[updaterType];
 
@@ -55,7 +55,7 @@
         />
 
         <input
-            type="text"
+            type="text" 
             placeholder="Категория"
             list="type-options"
             value={template.type}
@@ -63,7 +63,7 @@
         />
         <datalist id="type-options">
             {#each $typeOptions as type (type)}
-                <option value={type} />
+                <option value={type}></option>
             {/each}
         </datalist>
     </div>
@@ -73,7 +73,7 @@
         placeholder="Текст"
         value={template.value}
         on:input={getHandler("value")}
-    />
+    ></textarea>
 
     <button class="template_button" disabled={!isValid} on:click={onCreate}>
         Создать
