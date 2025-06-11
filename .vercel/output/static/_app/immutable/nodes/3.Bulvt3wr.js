@@ -1,1 +1,0 @@
-import{R as o}from"../chunks/CYgJF_JY.js";function r(e,t){throw new o(e,t.toString())}new TextEncoder;const n=()=>{throw r(303,"/template")},c=Object.freeze(Object.defineProperty({__proto__:null,load:n},Symbol.toStringTag,{value:"Module"}));export{c as universal};
